@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-Up Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .signup-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    .signup-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    .form-group textarea {
+      resize: none;
+      height: 80px;
+    }
+    .form-group input[type="file"] {
+      padding: 3px;
+    }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .button:hover {
+      background-color: #218838;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .login-link a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form>
+    <!-- Dropdown for Rescuer or Adoptee -->
+    <div class="form-group">
+      <label for="user-type">I am a:</label>
+      <select id="user-type" name="user-type" required>
+        <option value="">Select...</option>
+        <option value="rescuer">Rescuer</option>
+        <option value="adoptee">Adoptee</option>
+      </select>
+    </div>
+
+    <!-- Email Address -->
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <!-- First Name -->
+    <div class="form-group">
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+    </div>
+
+    <!-- Present Address -->
+    <div class="form-group">
+      <label for="present-address">Present Address:</label>
+      <textarea id="present-address" name="present-address" placeholder="Enter your present address" required></textarea>
+    </div>
+
+    <!-- Permanent Address -->
+    <div class="form-group">
+      <label for="permanent-address">Permanent Address:</label>
+      <textarea id="permanent-address" name="permanent-address" placeholder="Enter your permanent address" required></textarea>
+    </div>
+
+    <!-- Profile Photo -->
+    <div class="form-group">
+      <label for="profile-photo">Profile Photo:</label>
+      <input type="file" id="profile-photo" name="profile-photo" accept="image/*" required>
+    </div>
+
+    <!-- NID Number -->
+    <div class="form-group">
+      <label for="nid-number">NID Number:</label>
+      <input type="text" id="nid-number" name="nid-number" placeholder="Enter your NID number" required>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="form-group">
+      <label for="phone-number">Phone Number:</label>
+      <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number" required>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="button">Sign Up</button>
+  </form>
+
+  <!-- Login Link -->
+  <div class="login-link">
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .button:hover {
+      background-color: #218838;
+    }
+    .signup-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .signup-link a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+  <form>
+    <!-- Dropdown for Rescuer or Adoptee -->
+    <div class="form-group">
+      <label for="user-type">I am a:</label>
+      <select id="user-type" name="user-type" required>
+        <option value="">Select...</option>
+        <option value="rescuer">Rescuer</option>
+        <option value="adoptee">Adoptee</option>
+      </select>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <!-- Password Input -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+
+    <!-- Login Button -->
+    <button type="submit" class="button">Login</button>
+  </form>
+
+  <!-- Signup Button -->
+  <div class="signup-link">
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+</div>
+
+</body>
+</html>

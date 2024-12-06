@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adoptee Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #28a745;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+    .button:hover {
+      background-color: #218838;
+    }
+    .swap-button {
+      background-color: #ffc107;
+    }
+    .swap-button:hover {
+      background-color: #e0a800;
+    }
+    .logout-button {
+      background-color: #dc3545;
+    }
+    .logout-button:hover {
+      background-color: #c82333;
+    }
+    .notification-icon {
+      float: right;
+      position: relative;
+      margin: 0 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .card h3 {
+      margin: 10px 0;
+      color: #333;
+    }
+    .card p {
+      color: #666;
+      margin: 5px 0;
+    }
+    .filter-container {
+      margin-bottom: 20px;
+      text-align: right;
+    }
+    .filter-container select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Adoptee Dashboard</h1>
+  <div class="notification-icon">🔔</div>
+</header>
+
+<div class="container">
+  <h2>Welcome, Adoptee!</h2>
+  <p>Manage your adoption activities and explore pet adoption posts.</p>
+
+  <!-- Buttons -->
+  <a href="#" class="button">View Previous Adoptions</a>
+  <a href="#" class="button">View Pending Adoption Requests</a>
+  <a href="#" class="button">View Account Details</a>
+  <a href="login.html" class="button swap-button">Are you a Rescuer?</a>
+  <a href="#" class="button logout-button">Logout</a>
+
+  <!-- Filter Options -->
+  <div class="filter-container">
+    <label for="filter">Sort by:</label>
+    <select id="filter" name="filter">
+      <option value="latest">Latest</option>
+      <option value="type">Type of Pets</option>
+      <option value="location">Location</option>
+    </select>
+  </div>
+
+  <!-- Pet Adoption Posts -->
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <h3>Buddy</h3>
+      <p>Breed: Golden Retriever</p>
+      <p>Location: New York</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h3>Whiskers</h3>
+      <p>Breed: Persian Cat</p>
+      <p>Location: Los Angeles</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h3>Max</h3>
+      <p>Breed: Labrador</p>
+      <p>Location: Chicago</p>
+    </div>
+    
+    <!-- Add more cards as needed -->
+  </div>
+</div>
+
+</body>
+</html>
