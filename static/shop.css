@@ -13,6 +13,7 @@
     padding-right: 2%;
 }
 
+
 .image{
     margin-bottom: 3%;
     display: block;
@@ -22,13 +23,17 @@
     max-height: 225px;
 }
 
+h1{
+  justify-content: center;
+}
+
 h2{
     font-weight: 700;
     justify-content: center;
     text-align: center;
     padding: 2rem 0.9rem;
-	font-size: 2rem;
-	margin-bottom: 0.1rem;
+	  font-size: 2rem;
+	  margin-bottom: 0.1rem;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -86,7 +91,6 @@ h2{
 }
 
 
-/* From Uiverse.io by MuhammadHasann */ 
 .card {
   --bg-card: #grey;
   --primary: #7D0A0A;
@@ -241,7 +245,97 @@ h2{
   gap:15px;
 }
 
-.col{
+.card{
   padding: 2% 5%;
   margin: 15px;
+}
+
+.view-cart {
+  
+  padding: 40px;
+  display: block;
+  margin: 100px auto;
+  padding-bottom: 30%;
+  height: 500px;
+  width: 60%;
+  padding: 50px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.view-cart .content-table{
+  align-items: center;
+  border-collapse: collapse;
+  margin: 25px 0;
+  min-width: 600px;
+}
+.view-cart .content-table tbody, th, thead {
+  padding: 10px 20px;
+  background-color: #39393b;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.view-cart .table-bottom{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  max-width: 40%;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #39393b;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #dddddd;
+
+}
+.content-table tbody tr:nth-of-type(even){
+  background-color: #7D0A0A;
+  
+}
+
+
+
+
+.remove-btn {
+  padding: 1em 0.4;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #7D0A0A;
+  transition: all 1000ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #7D0A0A;
+}
+
+remove-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid #4D0A0A;
+  box-shadow: 4px 5px 17px -4px #7D0A0A;
+}
+
+remove-btn::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #7D0A0A;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+remove-btn:hover::before {
+  width: 250%;
 }
