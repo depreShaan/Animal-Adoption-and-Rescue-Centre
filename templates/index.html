@@ -56,14 +56,14 @@
 	        	<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
 	        	<li class="nav-item"><a href="" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="adoption.html" class="nav-link">Adoption</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="{{ url_for('display_products') }}" class="nav-link">Shop</a></li>
               </li>
               {% if 'user_id' in session %}
               <li><a href="{{ url_for('logout') }}">Logout</a></li>
               {% else %}
               <li><a href="{{ url_for('login') }}">Login</a></li>
-              {%endif%}
               <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+              {%endif%}
               {% if 'user_type' == "admin" %}
               <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
               {% endif %}
