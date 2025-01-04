@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Review</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin: 0 0 8px;
+        }
+        .card p {
+            margin: 4px 0;
+        }
+        .card button {
+            margin-right: 8px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .approve {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .reject {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Review</h1>
+    {% for request in requests %}
+    <div class="card">
+        <h3>{{ request['pet_name'] }}</h3>
+        <p><strong>Rescuer Name:</strong> {{ request['rescuer_name'] }}</p>
+        <p><strong>Description:</strong> {{ request['description'] }}</p>
+        <p><strong>Age:</strong> {{ request['age'] }}</p>
+        <p><strong>Type:</strong> {{ request['type'] }}</p>
+        <p><strong>Contact Info:</strong> {{ request['contact_info'] }}</p>
+        <form method="POST" action="{{ url_for('admin_review', request_id=request['_id']) }}" style="display: inline;">
+            <input type="hidden" name="status" value="Approved">
+            <button type="submit" class="approve">Approve</button>
+        </form>
+        <form method="POST" action="{{ url_for('admin_review', request_id=request['_id']) }}" style="display: inline;">
+            <input type="hidden" name="status" value="Rejected">
+            <button type="submit" class="reject">Reject</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>
