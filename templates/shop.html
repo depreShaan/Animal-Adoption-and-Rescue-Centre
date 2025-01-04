@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='shop.css') }}">
+        <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='shop.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <script src="https://kit.fontawesome.com/1e85c12f47.js" crossorigin="anonymous"></script>
@@ -14,73 +14,131 @@
     </head>
     <body>
       <!-- navbar -->
-        <div class="navbar">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                  <img class="logo" src="img/logo.png">
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Adopt</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Rescue</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Contacts</a>
-                      </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-danger" type="submit">Search</button>
-                    </form>
-                  </div>
-                </div>
-              </nav>
-        </div>
-      <!-- navbar-->
+      <div class="navbar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Adopt</a>
+                  </li>
+                  <li class="nav-item">
+                    <li><a href="{{ url_for('display_products') }}">Shop</a></li>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Rescue</a>
+                  </li>
+                  {% if 'user_id' in session %}
+                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                  {% else %}
+                  <li><a href="{{ url_for('login') }}">Login</a></li>
+                  {% endif %}
+                  <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                  {% if 'user_type' == "admin" %}
+                  <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                  {% endif %}
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-danger" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </div>
+  <!-- navbar-->
 
         <section class = "shop">
-        <div class="products"><h1>Products</h1>
-          <div class="card">
-            {% for product in products%}
-            <form action="/add_to_cart" method="POST"> 
-              <div class="title">
-                <span>{{ product.name }}</span>
-              </div>
-                <div class="image_container">
-                  <img class="image" src="img/shop_details01.jpg">
-                </div>
+          <div class="products"><h1>Products</h1>
+            <div class="container text-center">
+              {% for product in products%}
+                <div class="card col">
+                  <form action="/add_to_cart" method="POST"> 
+                  <div class="title">
+                  <span>{{ product.name }}</span>
+                  </div>
+                  <div class="image_container">
+                  <img class="image" src="{{ url_for('static', filename='img/shop_details01.jpg') }}">
+                  </div>
                 
-                <div class="price">
+                  <div class="price">
                   <span>BDT {{ product.price }}</span>
-                </div>
-                <input type="hidden" name="product_id" value="{{ product._id }}">
-                <div class="quantity">
+                  </div>
+                  <input type="hidden" name="product_id" value="{{ product._id }}">
+                  <input type="hidden" name="user_id" value="{{ session['username'] }}">
+                  <div class="quantity">
                   <label for="quantity">Quantity:</label>
                   <input type="number" name="quantity" min="1" required>
-                </div>
-                <div class="action">
-                  <button class="cart-button">
+                  </div>
+                  <div class="action">
+                    <button class="cart-button">
                     <span>Add to cart</span>
-                  </button>
+                    </button>
+                  </div>
+                  </form>
                 </div>
-              </form>
               {% endfor %}
             </div>
-            
-        
-        </div>
+          
+          </div>
         </section>
+      {%if total != 0%}
+        <section class="view-cart">
+          <h1>Cart</h1>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            {% set counter = 0 %}
+            <tbody>
+              {% for item in cart_items %}
+              
+                {% set counter = counter + 1 %}
+
+              <tr>
+                <th scope="row">{{ counter }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>BDT {{ item.price }}</td>
+                <td>BDT {{ item.total }}</td>
+                <td><form action="/update_cart" method="POST">
+                      <input type="hidden" name="update_id"  value="{{item.id}}" >
+                      <button class="remove-btn">Remove</button>
+                    </form>
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+            
+          </table>
+          <div class="table-bottom">
+            <td colspan="3">Grand Total: </td>
+            <td>BDT{{ total }}</td>
+            
+          </div>
+
+          <div class="checkout-btn">
+            <form action="/checkout" method="POST">
+            <button type="submit" class="btn btn-primary">Procced to checkout</button>
+            </form>
+          </div>
+
+        </section>
+      {%endif%}
     </body>
     
 </html>
