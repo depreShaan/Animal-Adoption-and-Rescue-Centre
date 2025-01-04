@@ -57,7 +57,16 @@
 	        	<li class="nav-item"><a href="" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="adoption.html" class="nav-link">Adoption</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
-            
+              </li>
+              {% if 'user_id' in session %}
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              {% else %}
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              {%endif%}
+              <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+              {% if 'user_type' == "admin" %}
+              <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+              {% endif %}
 	        </ul>
           <ul>
           <li><a href="adoption.html" class="btn btn-primary">Adopt Here</a></li>
