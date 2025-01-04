@@ -77,17 +77,19 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = user_collections.find_one({"username": username})
-
         if user:
-            print(user['_id'])
             session['user_id'] = str(user['_id'])
             session['user_type'] = user['type']
             session['username'] = user['username']
             flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))
+            if session['user_type'] == 'admin':
+                return redirect(url_for('dashboard'))
+            else:
+                return render_template('index.html')
         else:
             flash('Invalid username or password.', 'danger')
     return render_template('login.html')
+
 
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
@@ -102,24 +104,26 @@ def dashboard():
     else:
         return render_template('dashboard.html', username=session['username'], products=products)
 
+
 @app.route('/display_products') 
 def display_products():
-
+    
     cart_items = list(cart_collections.find())
     products = list(product_collections.find())
     cart_details = []
     total = 0
-    for item in cart_items:
-        product = product_collections.find_one({"_id": ObjectId(item['product_id'])})
-        if product:
-            cart_details.append({
-                "id":  ObjectId(item['_id']),
-                "name": product["name"],
-                "quantity": item["quantity"],
-                "price": product["price"],
-                "total": product["price"] * int(item["quantity"])
-            })
-        total += product["price"] * int(item["quantity"])
+    if len(cart_items) != 0:
+        for item in cart_items:
+            product = product_collections.find_one({"_id": ObjectId(item['product_id'])})
+            if product:
+                cart_details.append({
+                    "id":  ObjectId(item['_id']),
+                    "name": product["name"],
+                    "quantity": item["quantity"],
+                    "price": product["price"],
+                    "total": product["price"] * int(item["quantity"])
+                })
+            total += product["price"] * int(item["quantity"])
     
     return render_template('shop.html', products=products, cart_items=cart_details, total=total)
 
@@ -171,12 +175,14 @@ def checkout():
 def thankyou():
     return render_template('thankyou.html')
 
-@app.route('/upload_invetory', methods=['POST', 'GET'])
+
+@app.route('/upload_inventory', methods=['POST', 'GET'])
 def upload_inventory():
     name = request.form.get('name')
-    price = request.form.get('price')
+    price = int(request.form.get('price'))
     product_collections.insert_one({'name': name, 'price': price})
     return redirect(url_for('dashboard'))
+    
     
 @app.route('/logout')
 def logout():
@@ -184,9 +190,11 @@ def logout():
     flash('You have been logged out.', 'success')
     return redirect(url_for('login'))
 
+
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+
 
 if __name__ == '__main__': 
     app.run(debug=True) 
